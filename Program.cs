@@ -71,7 +71,7 @@ while (respuesta.ToUpper() == "S")
 
     //genero los espacios en blanco
 
-    while (posicionFila <= 2)
+    while (posicionFila <= 1)
     {
         while (contadorCeros != 4)
         {
@@ -98,6 +98,56 @@ while (respuesta.ToUpper() == "S")
     }
     posicionFila = 0;
     posicionColumna = 0;
+    contadorCeros = 0;
+    int[] suma = new int[9];
+
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 9; j++)
+        {
+            suma[j] = suma[j] + espaciosEnBlanco[i, j]; 
+        }
+    }
+
+
+    while (contadorCeros != 4)
+        {
+            contadorCeros = 0;
+            posicionFila = 2;
+            posicionColumna = 0;
+
+            while (posicionColumna <= 8)
+            {
+                if (suma[posicionColumna] == 0)
+                {
+
+                espaciosEnBlanco[posicionFila, posicionColumna] = 1;
+                    posicionColumna++;
+                }
+                else if (suma[posicionColumna] == 2)
+                {
+                espaciosEnBlanco[posicionFila, posicionColumna] = 0;
+                contadorCeros++;
+                posicionColumna++;
+                }
+                else
+                {
+                espaciosEnBlanco[posicionFila, posicionColumna] = numero.Next(0,2);
+                    if(espaciosEnBlanco[posicionFila, posicionColumna] == 0)
+                {
+                    contadorCeros++;
+                }
+                    posicionColumna++;
+                }
+
+            }
+
+
+        }
+    contadorCeros = 0;
+    posicionFila = 0;
+    posicionColumna = 0;
+
     //asigno los espacios en blanco al carton de bingo
 
     for (int i = 0; i < 3; i++)
